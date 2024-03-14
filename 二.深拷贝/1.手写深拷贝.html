@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 递归实现深拷贝
+    function deepCopy(target,map = new WeakMap()){
+      // 1. 是null，直接返回
+      if(target === null) return target
+      // 2. 是基本类型，直接返回
+      if(typeof target !== 'object') return target
+      // 3. 是Date
+      if(target instanceof Date) return new Date(target)
+      // 4. 是正则
+      if(target instanceof RegExp) return new RegExp(target)
+
+      // 3. 是对象类型，要clone,创建克隆对象
+      const cloneObj = new target.constructor()      
+
+      // 4. 解决循环引用
+      if(map.get(target)) return map.get(target)
+      else map.set(target,cloneObj)
+
+      // map类型
+      if(target instanceof Map){
+        for(const [key,value] of Object.entries(target)){
+          cloneObj.set(key, deepCopy(value,map))
+        }
+      }
+
+      // set类型
+      if(target instanceof Set){
+        for(const value of target){
+          cloneObj.add(deepCopy(value,map))
+        }
+      }
+
+      for(const key in target){
+        if(target.hasOwnProperty(key)){
+          cloneObj[key] = deepCopy(target[[key],map])
+        }
+      }
+
+      return cloneObj
+    }
+  </script>
+</body>
+</html>
