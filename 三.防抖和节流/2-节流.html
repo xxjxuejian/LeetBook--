@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      节流的定义：ns内需要执行的回调，在ns内重复的触发，则执行一次
+      应用场景：滚轮的滚动，以及触底加载
+    */
+   function throttle(fn,delay){
+    let timer = null;
+
+    return function(){
+      let context = this
+      let args = [...arguments]
+      if(!timer){
+        timer = setTimeout(() => {
+          fn.apply(context,args)
+          timer = null
+        }, delay);
+      }
+    }
+   }
+  </script>
+</body>
+</html>

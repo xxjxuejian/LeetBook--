@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+     防抖：ns后要执行的事件回调，在ns内重复触发，则重新计时
+     防抖立即执行版:就是在触发事件的时候，立即执行一次。
+     比如1s后执行的函数，对应的防抖立即执行版本就是，这个事件触发了就立即执行函数，1s内在触发就不会再执行了
+     应用：搜索框输入、按钮连接点击？浏览器窗口的resize，最后的时候再计算窗口大小，防止重复渲染。
+    */
+    function debounce(fn,delay,immediate){
+      let timer = null;
+
+      return function(){
+        let context = this
+        let args = [...arguments]
+        if(timer) clearTimeout(timer)
+        // 立即执行
+        if(immediate){
+          let callNow = !timer
+          if(callNow) {fn.apply(context,args)}
+          // 开了定时器，立即执行完delay内再次触发就不会再次执行了
+          timer = setTimeout(()=>{
+            timer = null
+          },delay)
+        }
+        // 不是立即执行的
+        else{
+          timer = setTimeout(()=>{
+            fn.apply(context,args)
+          },delay)
+        }
+      }
+    }
+  </script>
+</body>
+</html>
