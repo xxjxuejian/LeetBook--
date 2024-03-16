@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent{
+      border: 1px solid red;
+      /* 触发BFC，不然left的高度不会计算 */
+      overflow: hidden;
+    }
+    /* 左边设置了浮动，就脱离了文档流，右边的元素在标准流中会在left的下面 */
+    .left {
+      float: left;
+      width: 200px;
+      height: 300px;
+      background-color: antiquewhite;
+    }
+    /* right需要设置margin-left */
+    /* 设置margin-left就很麻烦，每次都要改 */
+    .right {
+      margin-left:200px;
+      background-color: aquamarine;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="left">左边固定</div>
+    <div class="right">右边自适应</div>
+  </div>
+</body>
+</html>

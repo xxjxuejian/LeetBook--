@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent{
+      border: 1px solid red;
+      overflow: hidden;
+    }
+    .left {
+      float: left;
+      width: 200px;
+      height: 100px;
+      background-color: antiquewhite;
+    }
+    .right {
+      /* 不设置margin-left，但是right会在left底下，触发right的BFC：BFC的区域不会与float的元素区域重叠 
+      避免了设置margin-left
+      */
+      overflow: hidden;
+      background-color: aquamarine;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="left">左边固定</div>
+    <div class="right">右边自适应</div>
+  </div>
+</body>
+</html>
