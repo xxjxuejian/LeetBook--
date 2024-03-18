@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      /* 触发父元素的bfc属性，让浮动子元素的高度参与计算 */
+      overflow: hidden;
+    }
+    .left {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background-color: coral;
+    }
+    .right {
+      float: right;
+      width: 120px;
+      height: 200px;
+      background-color: lightblue;
+    }
+    .middle {
+      margin-left: 200px;
+      margin-right: 120px;
+      height: 200px;
+      background-color: lightpink;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <!-- 浮动元素需要挨着放 -->
+    <div class="left">left左边</div>
+    <div class="right">right右边</div>
+    <div class="middle">middle中间</div>
+  </div>
+</body>
+</html>
