@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      background-color: pink;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      /* 旧版弹性盒 */
+      display: -webkit-box;
+      /* 弹性盒子元素垂直排列 */
+      -webkit-box-orient: vertical;
+      /* 控制要显示的行数 */
+      -webkit-line-clamp: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    我是文本我是文本我是文本我是文我是文我是文我是文我是文我是文我是文我是是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+</div>
+
+  <script>
+  </script>
+</body>
+</html>

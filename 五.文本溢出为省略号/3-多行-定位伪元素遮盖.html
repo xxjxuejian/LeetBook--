@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      height: 30px;
+      line-height: 30px;
+      position: relative;
+      overflow: hidden;
+      text-align: justify;
+      background-color: antiquewhite;
+    }
+    /* 逻辑就是在行尾用一个伪元素...，遮住后面的文字
+      就需要文字末尾对齐/两端对齐，然后设置行高，避免文字显示上半部分
+      伪元素背景色和父元素背景色一致，才能实现遮盖效果
+      width：1em,就是伪元素大小就是一个字的大小
+    */
+    .box::after{
+      content: "...";
+      width: 1em;
+      background-color: antiquewhite;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi adipisci totam possimus quae eveniet dolore magni quam et, magnam odit repellendus assumenda. Accusantium dicta accusamus ipsum sequi, delectus sint voluptatibus.
+  </div>
+</body>
+</html>
