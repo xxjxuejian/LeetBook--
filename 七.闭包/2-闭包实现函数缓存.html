@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      函数缓存的意思就是说，如果一个函数的执行可能比较耗时，每次调用的时候需要一些时间，
+      我们可以把每次函数的结果缓存下来，下次调用的时候，如果参数相同可以直接返回对应的结果
+
+    */
+    function cached(fn){
+      // 创建一个存储结果的对象，其实就像一个map
+      const cacheObj = Object.create(null)
+
+      return function cachedFn(args){
+        if(!cacheObj[args]){
+          let res = fn(args)
+          cacheObj[args] = res
+        }
+        return cacheObj[args]
+      }
+    }
+
+
+  </script>
+</body>
+</html>
