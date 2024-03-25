@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.myBind = function(target){
+      // 先拿到this需要指向的对象,就是传递进来的第一个参数
+      let bindObj = target
+
+      // 在拿到调用的时候传递过来的其他参数
+      let outArgs = Array.from(arguments).slice(1)
+      
+      // 拿到调用myBind的那个函数对象,fn.myBind，即在myBind中拿到fn,就是this
+      let outThis = this
+
+      // 返回出去的函数
+      function cb(){
+        // 这里也可能传递参数
+        let inArgs = [...arguments]
+        /* 
+        判断cb函数有没有通过new调用
+        不通过new调用 new.target === 'undefined'，
+        通过new 调用 new.target === 函数对象自身
+        isNew为true，表示 new.target !== "undefined" 那么就是通过了new调用
+          this就是指向new出来的实力对象
+        isNew为false,表示new.target === "undefined"，那就是没有通过new调用
+          this就指向绑定的对象bindObj
+        */
+        let isNew = typeof new.target !== "undefined"
+      
+        /* 
+        fn.myBind, 执行fn
+        执行的时候，要根据有没有通过new调用，传递不同的对象
+         */
+        return outThis.apply(isNew? this: bindObj,[...outArgs,...inArgs])
+        // return outThis.apply(isNew? this: bindObj,outArgs.concat(inArgs))
+      }
+    
+    }
+
+  </script>
+</body>
+</html>
